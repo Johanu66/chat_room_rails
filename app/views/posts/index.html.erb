@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
+
+<h1>Posts</h1>
+
+<%= render "form", post: @post %>
+
+<br>
+
+<%= turbo_stream_from "posts" %>
+<%= turbo_frame_tag "posts" do %>
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <div style="border: solid black 1px;">
+        <%= render post %>
+        <p>
+          <%= link_to "Show this post", post %>
+          <br>
+          <%= link_to "Edit this post", edit_post_path(post) %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
